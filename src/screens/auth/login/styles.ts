@@ -1,0 +1,129 @@
+import { StyleSheet, Dimensions } from 'react-native';
+import { theme } from '../../../config/theme';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
+export const styles = StyleSheet.create({
+  headerWrapper: {
+    alignItems: 'center',
+    paddingTop: theme.spacing.md,
+  },
+  logoImage: {
+    width: 180,
+    height: 54,
+  },
+  welcomeBox: {
+    alignItems: 'center',
+    marginTop: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.lg,
+  },
+  welcomeTitle: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 22,
+    color: theme.colors.black,
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  welcomeSubtitle: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 13,
+    color: theme.colors.gray,
+    textAlign: 'center',
+    lineHeight: 18,
+    marginBottom: 40
+  },
+  illustrationContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 18,
+    marginBottom: -80,
+    zIndex: 20,
+    elevation: 10,
+  },
+  illustrationImage: {
+    width: Math.min(SCREEN_WIDTH * 0.82, 280),
+    height: 190,
+  },
+  cardContainer: {
+    backgroundColor: theme.colors.white,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderRadius: 28,
+    paddingHorizontal: theme.spacing.lg,
+    paddingTop: 100,
+    paddingBottom: theme.spacing.xl,
+    marginHorizontal: 16,
+    marginTop: 0,
+    marginBottom: theme.spacing.xl,
+    shadowColor: theme.colors.black,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 8,
+    zIndex: 10,
+    borderWidth: 1,
+    borderColor: theme.colors.cardBorderSubtle,
+  },
+  cardTitle: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 18,
+    color: theme.colors.black,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  inputGroup: {
+    marginBottom: 20,
+  },
+  inputLabel: {
+    fontFamily: theme.fonts.semibold,
+    fontSize: 13,
+    color: theme.colors.black,
+    marginBottom: 6,
+  },
+  phoneInputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: theme.colors.borderGray,
+    borderRadius: 12,
+    height: 52,
+    paddingHorizontal: 14,
+    backgroundColor: theme.colors.white,
+  },
+  countryCode: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 14,
+    color: theme.colors.black,
+    marginRight: 10,
+  },
+  verticalDivider: {
+    width: 1,
+    height: 24,
+    backgroundColor: theme.colors.borderGray,
+    marginRight: 12,
+  },
+  phoneInput: {
+    flex: 1,
+    fontFamily: theme.fonts.regular,
+    fontSize: 14,
+    color: theme.colors.black,
+    height: '100%',
+  },
+  sendButton: {
+    marginTop: 8,
+  },
+  toggleRow: {
+    marginTop: 18,
+    alignItems: 'center',
+  },
+  toggleText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 13,
+    color: theme.colors.gray,
+  },
+  toggleLink: {
+    fontFamily: theme.fonts.bold,
+    color: theme.colors.purple,
+    textDecorationLine: 'underline',
+  },
+});

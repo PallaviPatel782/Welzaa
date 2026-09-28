@@ -1,0 +1,277 @@
+import { StyleSheet } from 'react-native';
+import { theme } from '../../../config/theme';
+
+export const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  topWhiteSection: {
+    backgroundColor: theme.colors.white,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 20,
+  },
+  profileHeaderRow: {
+    flexDirection: 'row',
+    marginBottom: 16,
+  },
+  avatarWrapper: {
+    position: 'relative',
+    marginRight: 14,
+  },
+  avatarImageContainer: {
+    width: 110,
+    height: 118,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  verifiedBadgePosition: {
+    position: 'absolute',
+    bottom: 4,
+    right: 4,
+  },
+  profileMeta: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  doctorName: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 18,
+    color: theme.colors.dark,
+    marginBottom: 2,
+  },
+  doctorTitle: {
+    fontFamily: theme.fonts.semibold,
+    fontSize: 11,
+    color: theme.colors.gray,
+    letterSpacing: 0.5,
+    marginBottom: 6,
+  },
+  statusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  statusText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 12,
+    color: theme.colors.subtextSlate,
+    marginLeft: 4,
+  },
+  availableTodayText: {
+    fontFamily: theme.fonts.bold,
+    color: theme.colors.darkPurple,
+  },
+  tagRatingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  categoryPill: {
+    backgroundColor: theme.colors.lightBlue,
+    borderRadius: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  categoryPillText: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 10,
+    color: theme.colors.blueText,
+    letterSpacing: 0.5,
+  },
+  ratingBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingScore: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 13,
+    color: theme.colors.dark,
+  },
+  specialtiesRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 16,
+  },
+  specialtyPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.softPurpleBg,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 12,
+  },
+  specialtyLabel: {
+    fontFamily: theme.fonts.semibold,
+    fontSize: 12,
+    color: theme.colors.darkPurple,
+  },
+  aboutHeader: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 16,
+    color: theme.colors.dark,
+    marginBottom: 8,
+  },
+  aboutParagraph: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 13.5,
+    color: theme.colors.gray,
+    lineHeight: 20,
+  },
+  middleLavenderSection: {
+    backgroundColor: theme.colors.lavenderSectionBg,
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 28,
+  },
+  infoBoxCard: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.white,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: theme.colors.borderGray,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    marginBottom: 14,
+  },
+  infoColumn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 4,
+  },
+  infoColumnDivider: {
+    width: 1,
+    backgroundColor: theme.colors.borderGray,
+    marginVertical: 4,
+  },
+  infoLabel: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 10,
+    color: theme.colors.gray,
+    textAlign: 'center',
+    marginTop: 4,
+    marginBottom: 2,
+  },
+  infoValue: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 11,
+    color: theme.colors.dark,
+    textAlign: 'center',
+  },
+  accordionBox: {
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: theme.colors.borderGray,
+    backgroundColor: theme.colors.white,
+    overflow: 'hidden',
+  },
+  accordionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 14,
+  },
+  accordionTitleGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  greenBadgeCircle: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: theme.colors.greenIcon,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  accordionTitle: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 14,
+    color: theme.colors.dark,
+  },
+  chevronRotation: {
+    transform: [{ rotate: '0deg' }],
+  },
+  chevronRotated: {
+    transform: [{ rotate: '-90deg' }],
+  },
+  accordionBody: {
+    paddingHorizontal: 14,
+    paddingBottom: 14,
+    paddingTop: 0,
+  },
+  qualificationItem: {
+    marginBottom: 10,
+  },
+  qualificationDegree: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 13,
+    color: theme.colors.dark,
+  },
+  qualificationInstitute: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 12,
+    color: theme.colors.gray,
+    marginLeft: 10,
+    marginTop: 2,
+  },
+  slotBannerStrip: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.white,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: theme.colors.borderLight,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+  },
+  slotBannerText: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 13,
+    color: theme.colors.dark,
+    marginLeft: 8,
+  },
+  slotBannerTimeText: {
+    fontFamily: theme.fonts.bold,
+    color: theme.colors.dark,
+  },
+  bottomFooterSafeArea: {
+    backgroundColor: theme.colors.white,
+    borderTopWidth: 1,
+    borderTopColor: theme.colors.borderLight,
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  priceContainer: {
+    flex: 1,
+  },
+  footerPrice: {
+    fontFamily: theme.fonts.extraBold,
+    fontSize: 20,
+    color: theme.colors.dark,
+  },
+  footerSessionText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 13,
+    color: theme.colors.gray,
+  },
+  footerSubtext: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 11,
+    color: theme.colors.gray,
+    marginTop: 2,
+  },
+});
