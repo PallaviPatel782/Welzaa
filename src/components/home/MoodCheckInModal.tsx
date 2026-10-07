@@ -26,6 +26,11 @@ export interface MoodOption {
   gif: any;
 }
 
+export interface MoodLogData {
+  mood: MoodOption;
+  reason?: string;
+}
+
 const MOODS: MoodOption[] = [
   { id: 'happy', label: 'Happy', gif: happyGif },
   { id: 'excited', label: 'Excited', gif: excitedGif },
@@ -37,13 +42,20 @@ const MOODS: MoodOption[] = [
   { id: 'angry', label: 'Angry', gif: angryGif },
 ];
 
+const REASON_OPTIONS = [
+  'Good Conversation',
+  'Achieved a goal',
+  'Quality time with loved ones',
+  'Other',
+];
+
 const { width } = Dimensions.get('window');
 const CIRCLE_RADIUS = Math.min((width - 100) / 2, 130);
 
 interface MoodCheckInModalProps {
   visible: boolean;
   onClose: () => void;
-  onMoodLogged?: (mood: MoodOption) => void;
+  onMoodLogged?: (data: MoodLogData) => void;
 }
 
 export const MoodCheckInModal: React.FC<MoodCheckInModalProps> = ({
@@ -52,17 +64,23 @@ export const MoodCheckInModal: React.FC<MoodCheckInModalProps> = ({
   onMoodLogged,
 }) => {
   const [selectedMood, setSelectedMood] = useState<MoodOption>(MOODS[0]);
+  const [selectedReason, setSelectedReason] = useState<string>('Good Conversation');
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
   const handleLogPress = () => {
     setIsLogged(true);
+  };
+
+  const handleFinish = () => {
     if (onMoodLogged) {
-      onMoodLogged(selectedMood);
+      onMoodLogged({ mood: selectedMood, reason: selectedReason });
     }
+    handleModalClose();
   };
 
   const handleModalClose = () => {
     setIsLogged(false);
+    setSelectedReason('Good Conversation');
     onClose();
   };
 
@@ -77,6 +95,11 @@ export const MoodCheckInModal: React.FC<MoodCheckInModalProps> = ({
         <View style={styles.overlay}>
           <TouchableWithoutFeedback>
             <View style={styles.cardContainer}>
+              {/* Decorative background circles */}
+              <View style={styles.decorTopLeft} />
+              <View style={styles.decorTopRight} />
+              <View style={styles.decorMidRight} />
+
               {!isLogged ? (
                 <View style={styles.contentWrapper}>
                   <Text style={styles.title}>Mood Check-in</Text>
@@ -130,6 +153,8 @@ export const MoodCheckInModal: React.FC<MoodCheckInModalProps> = ({
                 </View>
               ) : (
                 <View style={styles.contentWrapper}>
+                  <Text style={styles.loggedSuccessHeading}>Mood Logged!</Text>
+
                   <View style={styles.loggedEmojiWrapper}>
                     <AppFastImage
                       source={selectedMood.gif}
@@ -139,16 +164,43 @@ export const MoodCheckInModal: React.FC<MoodCheckInModalProps> = ({
 
                   <Text style={styles.loggedMoodTitle}>{selectedMood.label}</Text>
 
-                  <Text style={styles.loggedSuccessHeading}>Mood Logged!</Text>
+                  <View style={styles.reasonSection}>
+                    <Text style={styles.reasonTitle}>
+                      What made you feel {selectedMood.label} today?
+                    </Text>
+                    <Text style={styles.reasonSubtitle}>Select a reason</Text>
 
-                  <Text style={styles.loggedSuccessDesc}>
-                    Mood saved! You’re showing up for yourself. Check in again tomorrow to continue your journey.
-                  </Text>
+                    <View style={styles.optionsList}>
+                      {REASON_OPTIONS.map((option) => {
+                        const isSelected = selectedReason === option;
+                        return (
+                          <TouchableOpacity
+                            key={option}
+                            style={[
+                              styles.optionPill,
+                              isSelected && styles.optionPillSelected,
+                            ]}
+                            activeOpacity={0.8}
+                            onPress={() => setSelectedReason(option)}
+                          >
+                            <Text
+                              style={[
+                                styles.optionText,
+                                isSelected && styles.optionTextSelected,
+                              ]}
+                            >
+                              {option}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </View>
+                  </View>
 
                   <TouchableOpacity
                     style={[styles.actionButton, styles.okayButton]}
                     activeOpacity={0.8}
-                    onPress={handleModalClose}
+                    onPress={handleFinish}
                   >
                     <Text style={styles.actionButtonText}>Okay</Text>
                   </TouchableOpacity>
@@ -175,19 +227,48 @@ const styles = StyleSheet.create({
     maxWidth: 370,
     backgroundColor: theme.colors.softCream,
     borderRadius: 28,
-    paddingVertical: 32,
+    paddingVertical: 28,
     paddingHorizontal: 20,
     alignItems: 'center',
     position: 'relative',
+    overflow: 'hidden',
     shadowColor: theme.colors.pureBlack,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.15,
     shadowRadius: 16,
     elevation: 8,
   },
+  decorTopLeft: {
+    position: 'absolute',
+    top: -20,
+    left: -20,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: 'rgba(255, 218, 224, 0.45)',
+  },
+  decorTopRight: {
+    position: 'absolute',
+    top: -15,
+    right: -15,
+    width: 65,
+    height: 65,
+    borderRadius: 32.5,
+    backgroundColor: 'rgba(216, 235, 255, 0.5)',
+  },
+  decorMidRight: {
+    position: 'absolute',
+    top: 140,
+    right: -25,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: 'rgba(255, 246, 214, 0.6)',
+  },
   contentWrapper: {
     width: '100%',
     alignItems: 'center',
+    zIndex: 1,
   },
   title: {
     fontFamily: theme.fonts.bold,
@@ -247,43 +328,82 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   okayButton: {
-    width: '75%',
-    marginTop: 28,
+    width: '90%',
+    marginTop: 24,
   },
   actionButtonText: {
     fontFamily: theme.fonts.bold,
     fontSize: 16,
     color: theme.colors.white,
   },
+  loggedSuccessHeading: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 22,
+    color: theme.colors.black,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
   loggedEmojiWrapper: {
-    width: 90,
-    height: 90,
+    width: 80,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   loggedGifImage: {
-    width: 86,
-    height: 86,
+    width: 76,
+    height: 76,
   },
   loggedMoodTitle: {
     fontFamily: theme.fonts.bold,
     fontSize: 15,
     color: theme.colors.black,
-    marginBottom: 16,
+    marginBottom: 20,
   },
-  loggedSuccessHeading: {
+  reasonSection: {
+    width: '100%',
+    paddingHorizontal: 4,
+  },
+  reasonTitle: {
     fontFamily: theme.fonts.bold,
-    fontSize: 22,
+    fontSize: 16,
     color: theme.colors.black,
-    marginBottom: 8,
+    marginBottom: 4,
+    textAlign: 'left',
   },
-  loggedSuccessDesc: {
+  reasonSubtitle: {
     fontFamily: theme.fonts.regular,
-    fontSize: 13.5,
+    fontSize: 13,
     color: theme.colors.gray,
-    textAlign: 'center',
-    lineHeight: 20,
-    paddingHorizontal: 12,
+    marginBottom: 14,
+    textAlign: 'left',
+  },
+  optionsList: {
+    width: '100%',
+    gap: 10,
+  },
+  optionPill: {
+    width: '100%',
+    backgroundColor: theme.colors.white,
+    borderWidth: 1.5,
+    borderColor: '#E4E7EC',
+    borderRadius: 14,
+    paddingVertical: 13,
+    paddingHorizontal: 16,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  optionPillSelected: {
+    borderColor: theme.colors.purple,
+    backgroundColor: '#F7F3FF',
+  },
+  optionText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 14,
+    color: theme.colors.darkText,
+  },
+  optionTextSelected: {
+    fontFamily: theme.fonts.bold,
+    color: theme.colors.purple,
   },
 });

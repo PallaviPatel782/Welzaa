@@ -1,65 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { AppFastImage, RawFastImage } from '../common';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { theme } from '../../config/theme';
+import { MOCK_WELLNESS_ARTICLES, WellnessArticle } from '../../mock';
 
-import Articles3Svg from '../../assets/illustrations/articles3.svg';
-
-const articles1Img = require('../../assets/illustrations/articles1.png');
-const articles2Img = require('../../assets/illustrations/articles2.png');
-
-export interface ArticleItem {
-  id: string;
-  title: string;
-  category: string;
-  bannerType: 'anxiety' | 'relationships' | 'growth';
-}
-
-const ARTICLES: ArticleItem[] = [
-  {
-    id: '1',
-    title: '5 Simple Ways to Manage Anxiety',
-    category: 'Mental Health',
-    bannerType: 'anxiety',
-  },
-  {
-    id: '2',
-    title: 'Building Healthier Relationships',
-    category: 'Relationships',
-    bannerType: 'relationships',
-  },
-  {
-    id: '3',
-    title: 'Smash Your Day: Daily Routine Tips',
-    category: 'Personal Growth',
-    bannerType: 'growth',
-  },
-];
-
-const RenderArticleBanner = ({ type }: { type: 'anxiety' | 'relationships' | 'growth' }) => {
-  if (type === 'anxiety') {
-    return (
-      <View style={styles.bannerContainer}>
-        <AppFastImage source={articles1Img} style={styles.bannerImage} resizeMode={RawFastImage.resizeMode.cover} />
-      </View>
-    );
-  }
-  if (type === 'relationships') {
-    return (
-      <View style={styles.bannerContainer}>
-        <AppFastImage source={articles2Img} style={styles.bannerImage} resizeMode={RawFastImage.resizeMode.cover} />
-      </View>
-    );
-  }
-  return (
-    <View style={styles.bannerContainer}>
-      <Articles3Svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
-    </View>
-  );
-};
+export type ArticleItem = WellnessArticle;
 
 interface ArticlesSectionProps {
-  onArticlePress?: (article: ArticleItem) => void;
+  onArticlePress?: (article: WellnessArticle) => void;
 }
 
 export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onArticlePress }) => {
@@ -72,14 +19,16 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onArticlePress
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {ARTICLES.map((item) => (
+        {MOCK_WELLNESS_ARTICLES.map((item) => (
           <TouchableOpacity
             key={item.id}
             style={styles.card}
             activeOpacity={0.85}
             onPress={() => onArticlePress && onArticlePress(item)}
           >
-            <RenderArticleBanner type={item.bannerType} />
+            <View style={styles.bannerContainer}>
+              <Image source={item.image} style={styles.bannerImage} resizeMode="cover" />
+            </View>
 
             <View style={styles.cardContent}>
               <Text style={styles.articleTitle} numberOfLines={2}>
@@ -99,7 +48,7 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({ onArticlePress
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 24,
+    marginTop: 0,
   },
   sectionTitle: {
     fontFamily: theme.fonts.bold,

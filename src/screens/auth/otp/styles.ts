@@ -60,8 +60,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   otpInputBox: {
-    width: 44,
-    height: 52,
+    width: 40,
+    height: 45,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: theme.colors.borderGray,

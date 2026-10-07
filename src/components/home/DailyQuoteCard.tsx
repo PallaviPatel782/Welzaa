@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     marginTop: 24,
-    marginBottom: 24,
   },
   sectionTitle: {
     fontFamily: theme.fonts.bold,

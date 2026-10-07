@@ -81,18 +81,18 @@ export const AppButton: React.FC<AppButtonProps> = ({
     switch (size) {
       case 'small':
         return {
-          button: { paddingVertical: 8, paddingHorizontal: 14, borderRadius: 10 },
+          button: { paddingVertical: 6, paddingHorizontal: 12, borderRadius: 5 },
           text: { fontSize: 12, fontFamily: theme.fonts.bold },
         };
       case 'large':
         return {
-          button: { paddingVertical: 16, paddingHorizontal: 24, borderRadius: 18 },
-          text: { fontSize: 16, fontFamily: theme.fonts.bold },
+          button: { paddingVertical: 12, paddingHorizontal: 20, borderRadius: 10 },
+          text: { fontSize: 15, fontFamily: theme.fonts.bold },
         };
       case 'medium':
       default:
         return {
-          button: { paddingVertical: 12, paddingHorizontal: 18, borderRadius: 14 },
+          button: { paddingVertical: 10, paddingHorizontal: 16, borderRadius: 8 },
           text: { fontSize: 14, fontFamily: theme.fonts.bold },
         };
     }

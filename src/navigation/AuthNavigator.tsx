@@ -35,7 +35,10 @@ export const AuthNavigator: React.FC = () => {
           animation: 'slide_from_right',
         }}
       >
-        <Stack.Screen name="Splash">
+        <Stack.Screen
+          name="Splash"
+          options={{ animation: 'fade' }}
+        >
           {({ navigation }) => (
             <SplashScreen onFinish={() => navigation.replace('Welcome')} />
           )}
@@ -177,7 +180,7 @@ export const AuthNavigator: React.FC = () => {
         visible={isConsentModalVisible}
         onContinue={() => {
           setIsConsentModalVisible(false);
-
+          rootNav.navigate('Auth', { screen: 'LocationAccess' });
         }}
       />
     </>

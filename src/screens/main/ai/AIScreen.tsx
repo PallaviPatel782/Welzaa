@@ -125,7 +125,8 @@ export const AIScreen: React.FC<AIScreenProps> = ({ onBack }) => {
 
       <KeyboardAvoidingView
         style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior="padding"
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
       >
         <ScrollView
           ref={scrollViewRef}
@@ -241,7 +242,7 @@ export const AIScreen: React.FC<AIScreenProps> = ({ onBack }) => {
           )}
         </ScrollView>
 
-        <View style={styles.bottomInputWrapper}>
+        <View style={[styles.bottomInputWrapper]}>
           <View style={styles.inputBarContainer}>
             <TextInput
               style={styles.textInput}
@@ -265,3 +266,4 @@ export const AIScreen: React.FC<AIScreenProps> = ({ onBack }) => {
     </ScreenWrapper>
   );
 };
+

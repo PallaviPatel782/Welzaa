@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: theme.colors.white,
     borderRadius: 14,
-    height: 50,
+    height: 44,
     paddingHorizontal: 16,
     shadowColor: theme.colors.black,
     shadowOffset: { width: 0, height: 4 },

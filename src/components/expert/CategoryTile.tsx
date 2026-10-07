@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     padding: 6,
     borderWidth: 2,
     borderColor: 'transparent',
-    marginBottom: 12,
   },
   tileCardSelected: {
     borderColor: theme.colors.blueText,

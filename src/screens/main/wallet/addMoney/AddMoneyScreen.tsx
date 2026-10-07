@@ -21,10 +21,10 @@ export const AddMoneyScreen: React.FC = () => {
 
     setIsSuccessModalVisible(true);
 
-    setTimeout(() => {
-      setIsSuccessModalVisible(false);
-      navigation.goBack();
-    }, 1600);
+    // setTimeout(() => {
+    //   setIsSuccessModalVisible(false);
+    //   navigation.goBack();
+    // }, 1600);
   };
 
   const handleQuickSelect = (val: string) => {
@@ -110,7 +110,7 @@ export const AddMoneyScreen: React.FC = () => {
         <View style={styles.successModalOverlay}>
           <View style={styles.successModalCard}>
             <View style={styles.successIconCircle}>
-              <CheckIconSvg width={28} height={28} color={theme.colors.greenIcon} />
+              <CheckIconSvg width={32} height={32} color={theme.colors.greenIcon} />
             </View>
 
             <AppText style={styles.successTitle}>Money Added Successfully!</AppText>

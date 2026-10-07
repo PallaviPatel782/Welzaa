@@ -1,0 +1,160 @@
+import { SessionData, CancellationReason } from '../types/session';
+import DrNikitaDharmaSvg from '../assets/images/DrNikitaDharma.svg';
+import DrRahulMehtaSvg from '../assets/images/Dr.RahulMehta.svg';
+
+export const UPCOMING_SESSIONS: SessionData[] = [
+  {
+    id: '1',
+    doctorName: 'Dr. Nikita Dharma',
+    specialty: 'CLINICAL PSYCOLOGIST',
+    date: 'Instant',
+    time: '06:00 PM',
+    sessionType: 'Online Session',
+    price: '₹2000',
+    duration: '45 min',
+    AvatarComponent: DrNikitaDharmaSvg,
+    isInstant: true,
+    dateTime: 'Instant 06:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ123',
+    status: 'upcoming',
+  },
+  {
+    id: '2',
+    doctorName: 'Dr. Rahul Mehta',
+    specialty: 'COUNSELING PSYCHOLOGIST',
+    date: '16 Sep 2026',
+    time: '06:00 PM',
+    sessionType: 'Online Session',
+    price: '₹2000',
+    duration: '45 min',
+    AvatarComponent: DrRahulMehtaSvg,
+    dateTime: '16 Sep 2026 06:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ124',
+    status: 'upcoming',
+  },
+];
+
+export const COMPLETED_SESSIONS: SessionData[] = [
+  {
+    id: '3',
+    doctorName: 'Dr. Anjali Sharma',
+    specialty: 'Relationship Expert',
+    date: '16 Sep 2026',
+    time: '06:00 PM',
+    sessionType: 'Online Session',
+    price: '₹2000',
+    duration: '45 Minutes',
+    AvatarComponent: DrNikitaDharmaSvg,
+    dateTime: '16 Sep 2026, 06:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ125',
+    status: 'completed',
+    summary: 'Discussed Current Challenges, Explored coping strategies and worked on goals.',
+    goals: [
+      {
+        id: '1',
+        title: '1. Practice 5 Minute Morning Meditation',
+        subtitle: 'Daily 5 min',
+      },
+      {
+        id: '2',
+        title: '2. Journal Your Thoughts',
+        subtitle: "Write 3 things you're grateful for",
+      },
+    ],
+  },
+  {
+    id: '4',
+    doctorName: 'Dr. Rahul Mehta',
+    specialty: 'COUNSELING PSYCHOLOGIST',
+    date: '10 Aug 2026',
+    time: '04:00 PM',
+    sessionType: 'Online Session',
+    price: '₹1500',
+    duration: '45 Minutes',
+    AvatarComponent: DrRahulMehtaSvg,
+    dateTime: '10 Aug 2026, 04:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ126',
+    status: 'completed',
+    summary: 'Focused on stress management strategies and daily routine optimization.',
+    goals: [
+      {
+        id: '1',
+        title: '1. 10 Minute Evening Walk',
+        subtitle: 'Daily 10 min',
+      },
+    ],
+  },
+];
+
+export const CANCELLED_SESSIONS: SessionData[] = [
+  {
+    id: '5',
+    doctorName: 'Dr. Anjali Sharma',
+    specialty: 'Relationship expert',
+    date: '16 Sep 2026',
+    time: '06:00 PM',
+    sessionType: 'Online Session',
+    price: '₹2000',
+    duration: '45 Minutes',
+    AvatarComponent: DrNikitaDharmaSvg,
+    dateTime: '16 Sep 2026, 06:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ127',
+    status: 'cancelled',
+    cancelledDate: '12 Sep 2026 at 10:24 AM.',
+    cancelReason: 'Schedule Conflict',
+    cancelReasonSubtext: "I'm not available at this time.",
+    additionalNote: "e.g I'm not feeling well.will reschedule soon...",
+  },
+  {
+    id: '6',
+    doctorName: 'Dr. Rahul Mehta',
+    specialty: 'COUNSELING PSYCHOLOGIST',
+    date: '16 Sep 2026',
+    time: '06:00 PM',
+    sessionType: 'Online Session',
+    price: '₹2000',
+    duration: '45 Minutes',
+    AvatarComponent: DrRahulMehtaSvg,
+    dateTime: '16 Sep 2026, 06:00 PM',
+    amountPaid: '₹500',
+    bookingId: 'WZ128',
+    status: 'cancelled',
+    cancelledDate: '14 Sep 2026 at 02:15 PM.',
+    cancelReason: 'Personal Reasons',
+    cancelReasonSubtext: 'Due to personal commitments.',
+    additionalNote: 'Will rebook next week.',
+  },
+];
+
+export const CANCELLATION_REASONS: CancellationReason[] = [
+  {
+    id: 'schedule_conflict',
+    title: 'Schedule Conflict',
+    subtext: "I'm not available at this time.",
+  },
+  {
+    id: 'personal_reasons',
+    title: 'Personal Reasons',
+    subtext: 'Due to personal commitments.',
+  },
+  {
+    id: 'work_related',
+    title: 'Work Related',
+    subtext: 'Due to work or professional reasons',
+  },
+  {
+    id: 'financial_reasons',
+    title: 'Financial Reasons',
+    subtext: 'Unable to continue at this time.',
+  },
+  {
+    id: 'other',
+    title: 'Other',
+    subtext: 'Other reason.',
+  },
+];

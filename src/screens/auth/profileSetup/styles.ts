@@ -90,7 +90,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.borderGray,
     borderRadius: 12,
-    height: 52,
+    height: 46,
     paddingHorizontal: 14,
     backgroundColor: theme.colors.white,
   },

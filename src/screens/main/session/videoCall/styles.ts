@@ -1,0 +1,96 @@
+import { StyleSheet } from 'react-native';
+import { theme } from '../../../../config/theme';
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 24,
+  },
+  videoFrame: {
+    flex: 1,
+    backgroundColor: theme.colors.white,
+    borderRadius: 28,
+    position: 'relative',
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: theme.colors.pureBlack,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 16,
+    elevation: 4,
+  },
+  videoFrameOff: {
+    backgroundColor: theme.colors.warmWhite,
+    borderWidth: 1,
+    borderColor: theme.colors.borderGray,
+  },
+  nameTagBadge: {
+    position: 'absolute',
+    top: 24,
+    left: 24,
+    zIndex: 10,
+  },
+  participantName: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 18,
+    color: theme.colors.dark,
+  },
+  streamCenter: {
+    width: 220,
+    height: 220,
+    borderRadius: 110,
+    overflow: 'hidden',
+    backgroundColor: theme.colors.softCream,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 4,
+    borderColor: theme.colors.softPurpleLight,
+  },
+  largeAvatarBox: {
+    width: 180,
+    height: 180,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cameraOffCenter: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+  },
+  cameraOffText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 14,
+    color: theme.colors.gray,
+  },
+  controlsRow: {
+    position: 'absolute',
+    bottom: 30,
+    left: 24,
+    right: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  callControlBtn: {
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: theme.colors.pureBlack,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 6,
+  },
+  btnNavy: {
+    backgroundColor: theme.colors.black,
+  },
+  btnRed: {
+    backgroundColor: theme.colors.red,
+  },
+});

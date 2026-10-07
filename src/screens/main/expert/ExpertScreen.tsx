@@ -1,48 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   ScrollView,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { AppHeader, AppText } from '../../../components/common';
 import {
   ExpertTypeCards,
   ExpertSearchBar,
   ExpertCard,
   CategoryGrid,
-  CategoryModal,
   FilterSortingModal,
+  ActiveFilterChips,
 } from '../../../components/expert';
 import { useExpertFilter } from '../../../hooks';
 import { styles } from './styles';
 
 export const ExpertScreen: React.FC = () => {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
 
   const {
     selectedType,
     setSelectedType,
     searchText,
     handleSearchChange,
-    selectedCategory,
-    isCategoryModalVisible,
-    setIsCategoryModalVisible,
     isFilterModalVisible,
     setIsFilterModalVisible,
     activeFilters,
     setActiveFilters,
     filteredExperts,
-    handleSelectCategory,
   } = useExpertFilter();
 
-  const isWelzaaActive = selectedType === 'welzaa';
-  const isSearchOrCategoryActive =
-    Boolean(selectedCategory) || Boolean(searchText.trim()) || Boolean(activeFilters);
+  useEffect(() => {
+    if (route.params?.initialType) {
+      setSelectedType(route.params.initialType);
+    }
+  }, [route.params?.initialType, setSelectedType]);
 
-  const shouldShowCategoryGrid = isWelzaaActive && !isSearchOrCategoryActive;
+  const isWelzaaActive = selectedType === 'welzaa';
+
+  const handleApplyFiltersFromModal = (filters: any) => {
+    setIsFilterModalVisible(false);
+    setActiveFilters(filters);
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -65,7 +68,12 @@ export const ExpertScreen: React.FC = () => {
             searchText={searchText}
             onChangeText={handleSearchChange}
             onFilterPress={() => setIsFilterModalVisible(true)}
-            onCategorySearchPress={() => setIsCategoryModalVisible(true)}
+          />
+
+          <ActiveFilterChips
+            filters={activeFilters}
+            onRemoveFilter={(updated) => setActiveFilters(updated)}
+            onClearAll={() => setActiveFilters(null)}
           />
         </SafeAreaView>
       </View>
@@ -75,29 +83,16 @@ export const ExpertScreen: React.FC = () => {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       >
-        {shouldShowCategoryGrid ? (
-          <CategoryGrid onSelectCategory={handleSelectCategory} />
+        {isWelzaaActive ? (
+          <CategoryGrid
+            filterQuery={searchText}
+            activeFilters={activeFilters}
+            onSelectCategory={(cat) =>
+              navigation.navigate('BookSessionWelzaaInstant', { category: cat, filters: activeFilters })
+            }
+          />
         ) : (
           <>
-            {isWelzaaActive && isSearchOrCategoryActive && (
-              <View style={styles.activeFilterHeader}>
-                <AppText style={styles.activeFilterTitle}>
-                  Showing experts for{' '}
-                  <AppText style={styles.activeFilterHighlight}>
-                    "{selectedCategory || searchText}"
-                  </AppText>
-                </AppText>
-
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={() => handleSearchChange('')}
-                  style={styles.clearCategoryBtn}
-                >
-                  <AppText style={styles.clearCategoryText}>Show All Categories</AppText>
-                </TouchableOpacity>
-              </View>
-            )}
-
             {filteredExperts.length > 0 ? (
               filteredExperts.map((expert) => (
                 <ExpertCard
@@ -120,16 +115,12 @@ export const ExpertScreen: React.FC = () => {
         )}
       </ScrollView>
 
-      <CategoryModal
-        visible={isCategoryModalVisible}
-        onClose={() => setIsCategoryModalVisible(false)}
-        onSelectCategory={handleSelectCategory}
-      />
-
       <FilterSortingModal
         visible={isFilterModalVisible}
+        isWelzaa={isWelzaaActive}
+        initialFilters={activeFilters}
         onClose={() => setIsFilterModalVisible(false)}
-        onApplyFilters={(filters) => setActiveFilters(filters)}
+        onApplyFilters={handleApplyFiltersFromModal}
       />
     </View>
   );

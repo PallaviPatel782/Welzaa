@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, StatusBar } from 'react-native';
+import { View, ScrollView, StatusBar, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
+import { AppText } from '../../../components/common';
 
 import {
   HomeHeader,
@@ -13,8 +14,9 @@ import {
   DailyQuoteCard,
   MoodCheckInModal,
   MoodToggleBar,
-  MoodOption,
+  MoodLogData,
   CategoryItem,
+  ArticleItem,
 } from '../../../components/home';
 
 export const HomeScreen: React.FC = () => {
@@ -35,13 +37,25 @@ export const HomeScreen: React.FC = () => {
     }
   }, [hasLoggedToday]);
 
-  const handleMoodLogged = (_mood: MoodOption) => {
+  const handleMoodLogged = (_data: MoodLogData) => {
     setLastLoggedDate(todayStr);
     setIsMoodModalVisible(false);
   };
 
   const handleCategorySelect = (_category: CategoryItem) => {
     navigation.navigate('Expert');
+  };
+
+  const handleArticlePress = (article: ArticleItem) => {
+    navigation.navigate('WellnessArticleDetail', { article });
+  };
+
+  const handleJoinSession = () => {
+    navigation.navigate('JoinSession');
+  };
+
+  const handleGetMatchedPress = (tab: 'welzaa' | 'marketplace') => {
+    navigation.navigate('Expert', { initialType: tab });
   };
 
   return (
@@ -52,7 +66,7 @@ export const HomeScreen: React.FC = () => {
         <SafeAreaView edges={['top']} style={styles.topSafeArea}>
           <HomeHeader
             location="Abhay Niwas - Chinchwad, Pune, Pimpri Chinch..."
-            onLocationPress={() => {}}
+            onLocationPress={() => { }}
             onWalletPress={() => navigation.navigate('Wallet')}
             onNotificationPress={() => navigation.navigate('Notification')}
             onSOSPress={() => navigation.navigate('Sos')}
@@ -73,12 +87,35 @@ export const HomeScreen: React.FC = () => {
           />
         )}
 
-        <ExpertTabSelector />
+        <ExpertTabSelector onGetMatchedPress={handleGetMatchedPress} />
 
         <View style={styles.bodyContent}>
-          <UpcomingSessionCard onJoinPress={() => {}} />
+          <UpcomingSessionCard onJoinPress={handleJoinSession} />
+
+          {/* Offer Banner Container */}
+          <TouchableOpacity
+            style={styles.offerBannerContainer}
+            activeOpacity={0.9}
+            onPress={handleJoinSession}
+          >
+            <Image
+              source={require('../../../assets/images/homeofferbanner.png')}
+              style={styles.offerBannerImage}
+              resizeMode="cover"
+            />
+            <TouchableOpacity
+              style={styles.offerBannerJoinButton}
+              activeOpacity={0.85}
+              onPress={handleJoinSession}
+            >
+              <AppText style={styles.offerBannerJoinText}>Join Session</AppText>
+            </TouchableOpacity>
+          </TouchableOpacity>
+
           <ExploreCategoriesGrid onSelectCategory={handleCategorySelect} />
-          <ArticlesSection onArticlePress={() => {}} />
+
+          <ArticlesSection onArticlePress={handleArticlePress} />
+
           <DailyQuoteCard quote="Don’t give up good things take time." />
         </View>
       </ScrollView>

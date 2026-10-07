@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 6,
-    marginBottom: 12,
+    marginBottom: 8,
     shadowColor: theme.colors.pureBlack,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.04,

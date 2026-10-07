@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   listContent: {
     paddingBottom: 32,
-    marginTop: 15,
+    marginTop: 2,
   },
   activeFilterHeader: {
     flexDirection: 'row',

@@ -29,7 +29,7 @@ export const FormContainer: React.FC<FormContainerProps> = ({
   return (
     <KeyboardAvoidingView
       style={[styles.keyboardView, style]}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
       <ScrollView

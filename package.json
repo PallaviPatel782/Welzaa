@@ -22,9 +22,12 @@
     "react-native-image-picker": "^8.2.1",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-maps": "^1.29.8",
+    "react-native-nitro-image": "^0.15.2",
+    "react-native-nitro-modules": "^0.37.1",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.28.0",
-    "react-native-svg": "^15.15.5"
+    "react-native-svg": "^15.15.5",
+    "react-native-vision-camera": "^5.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

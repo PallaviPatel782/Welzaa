@@ -1,27 +1,37 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { theme } from '../../../config/theme';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: theme.colors.overlayDark,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    justifyContent: 'flex-end',
   },
-  card: {
-    width: Math.min(SCREEN_WIDTH - 40, 360),
+  sheetCard: {
+    width: '100%',
     backgroundColor: theme.colors.white,
-    borderRadius: 24,
-    padding: 24,
-    alignItems: 'center',
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    paddingHorizontal: 24,
+    paddingTop: 12,
     shadowColor: theme.colors.black,
-    shadowOffset: { width: 0, height: 8 },
+    shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.15,
     shadowRadius: 16,
     elevation: 10,
+  },
+  safeArea: {
+    width: '100%',
+    alignItems: 'center',
+    paddingBottom: 16,
+  },
+  handleBar: {
+    width: 40,
+    height: 4,
+    backgroundColor: theme.colors.lightGray,
+    borderRadius: 2,
+    alignSelf: 'center',
+    marginBottom: 20,
   },
   illustrationWrapper: {
     marginBottom: 20,
@@ -48,7 +58,7 @@ export const styles = StyleSheet.create({
     color: theme.colors.gray,
     textAlign: 'center',
     lineHeight: 20,
-    marginTop: 12,
+    marginTop: 8,
     marginBottom: 24,
   },
   button: {

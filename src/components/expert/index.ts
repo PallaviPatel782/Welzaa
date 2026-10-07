@@ -5,3 +5,4 @@ export * from './CategoryModal';
 export * from './FilterSortingModal';
 export * from './CategoryGrid';
 export * from './CategoryTile';
+export * from './ActiveFilterChips';

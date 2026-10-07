@@ -1,21 +1,19 @@
 import React from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import Svg, { Path, Circle } from 'react-native-svg';
 import { theme } from '../../config/theme';
 import SearchIconSvg from '../../assets/icons/searchIcon.svg';
+import FilterIconSvg from '../../assets/icons/filterIcon.svg';
 
 interface ExpertSearchBarProps {
   searchText: string;
   onChangeText: (text: string) => void;
   onFilterPress: () => void;
-  onCategorySearchPress?: () => void;
 }
 
 export const ExpertSearchBar: React.FC<ExpertSearchBarProps> = ({
   searchText,
   onChangeText,
   onFilterPress,
-  onCategorySearchPress,
 }) => {
   return (
     <View style={styles.container}>
@@ -27,7 +25,6 @@ export const ExpertSearchBar: React.FC<ExpertSearchBarProps> = ({
           placeholderTextColor={theme.colors.slateGray}
           value={searchText}
           onChangeText={onChangeText}
-          onFocus={onCategorySearchPress}
         />
       </View>
 
@@ -36,17 +33,7 @@ export const ExpertSearchBar: React.FC<ExpertSearchBarProps> = ({
         activeOpacity={0.8}
         onPress={onFilterPress}
       >
-        <Svg width={20} height={20} viewBox="0 0 24 24" fill="none">
-          <Path
-            d="M4 6H20M4 12H20M4 18H20"
-            stroke={theme.colors.dark}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-          <Circle cx="8" cy="6" r="2.5" fill={theme.colors.accentLime} stroke={theme.colors.dark} strokeWidth="2" />
-          <Circle cx="16" cy="12" r="2.5" fill={theme.colors.accentLime} stroke={theme.colors.dark} strokeWidth="2" />
-          <Circle cx="10" cy="18" r="2.5" fill={theme.colors.accentLime} stroke={theme.colors.dark} strokeWidth="2" />
-        </Svg>
+        <FilterIconSvg width={20} height={20} color={theme.colors.dark} />
       </TouchableOpacity>
     </View>
   );
@@ -67,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     borderRadius: 25,
     paddingHorizontal: 16,
-    height: 46,
+    height: 40,
     borderWidth: 1,
     borderColor: theme.colors.borderGray,
     elevation: 2,
@@ -85,9 +72,9 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   filterButton: {
-    width: 46,
-    height: 46,
-    borderRadius: 23,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: theme.colors.accentLime,
     justifyContent: 'center',
     alignItems: 'center',

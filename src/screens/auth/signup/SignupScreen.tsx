@@ -135,7 +135,7 @@ export const SignupScreen: React.FC<SignupScreenProps> = ({
             onPress={() => setIs18Plus(!is18Plus)}
           >
             <View style={[styles.checkboxBox, is18Plus && styles.checkboxChecked]}>
-              {is18Plus && <CheckIconSvg width={12} height={12} />}
+              {is18Plus && <CheckIconSvg width={12} height={12} color={theme.colors.white} />}
             </View>
             <Text style={styles.checkboxLabel}>I confirm that I am 18+ years in age</Text>
           </TouchableOpacity>

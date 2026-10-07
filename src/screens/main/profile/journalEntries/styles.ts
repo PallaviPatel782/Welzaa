@@ -1,0 +1,140 @@
+import { StyleSheet } from 'react-native';
+import { theme } from '../../../../config/theme';
+
+export const styles = StyleSheet.create({
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 80,
+  },
+  tabRow: {
+    flexDirection: 'row',
+    backgroundColor: theme.colors.borderLight,
+    borderRadius: 24,
+    padding: 4,
+    marginBottom: 16,
+  },
+  tabBtn: {
+    flex: 1,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+  },
+  tabBtnActive: {
+    backgroundColor: theme.colors.purple,
+  },
+  tabText: {
+    fontFamily: theme.fonts.semibold,
+    fontSize: 13.5,
+    color: theme.colors.darkText,
+  },
+  tabTextActive: {
+    color: theme.colors.white,
+    fontFamily: theme.fonts.bold,
+  },
+  searchBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: theme.colors.dividerBorder,
+    paddingHorizontal: 14,
+    height: 40,
+    marginBottom: 14,
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontFamily: theme.fonts.regular,
+    fontSize: 13.5,
+    color: theme.colors.dark,
+    paddingVertical: 0,
+  },
+  categoriesScroll: {
+    gap: 8,
+    paddingBottom: 16,
+  },
+  chipBtn: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: theme.colors.white,
+    borderWidth: 1,
+    borderColor: theme.colors.dividerBorder,
+  },
+  chipBtnActive: {
+    backgroundColor: theme.colors.purple,
+    borderColor: theme.colors.purple,
+  },
+  chipText: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 13,
+    color: theme.colors.darkText,
+  },
+  chipTextActive: {
+    color: theme.colors.white,
+    fontFamily: theme.fonts.bold,
+  },
+  articlesList: {
+    gap: 14,
+  },
+  articleCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+    borderRadius: 16,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: theme.colors.cardBorder,
+    shadowColor: theme.colors.pureBlack,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  articleImage: {
+    width: 68,
+    height: 68,
+    borderRadius: 12,
+    marginRight: 14,
+  },
+  articleTextContainer: {
+    flex: 1,
+  },
+  articleTitle: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 14,
+    color: theme.colors.dark,
+    marginBottom: 3,
+    lineHeight: 18,
+  },
+  articleSubtitle: {
+    fontFamily: theme.fonts.medium,
+    fontSize: 12,
+    color: theme.colors.gray,
+    marginBottom: 6,
+  },
+  articleDate: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 11,
+    color: theme.colors.slateGray,
+  },
+  fabButton: {
+    position: 'absolute',
+    bottom: 65,
+    right: 20,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: theme.colors.purple,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 6,
+  },
+});

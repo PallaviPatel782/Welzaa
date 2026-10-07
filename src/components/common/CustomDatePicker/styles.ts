@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.borderGray,
     borderRadius: 12,
     paddingHorizontal: 16,
-    height: 52,
+    height: 46,
     backgroundColor: theme.colors.white,
   },
   inputBoxError: {

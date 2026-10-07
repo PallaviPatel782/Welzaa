@@ -169,7 +169,7 @@ export const ParentConsentScreen: React.FC<ParentConsentScreenProps> = ({
                 isConsentGiven && styles.checkboxChecked,
               ]}
             >
-              {isConsentGiven && <CheckIconSvg width={12} height={12} />}
+              {isConsentGiven && <CheckIconSvg width={12} height={12} color={theme.colors.white} />}
             </View>
             <Text style={styles.checkboxLabel}>
               I confirm that I am the parent/legal guardian and give consent for the

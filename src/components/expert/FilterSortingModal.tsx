@@ -8,11 +8,12 @@ import {
   TextInput,
 } from 'react-native';
 import Slider from '@react-native-community/slider';
-import Svg, { Path } from 'react-native-svg';
+import SearchIconSvg from '../../assets/icons/searchIcon.svg';
+import CheckIconSvg from '../../assets/icons/checkIcon.svg';
 import { theme } from '../../config/theme';
 import { FilterTab, FilterCriteria } from '../../types';
-import SearchIconSvg from '../../assets/icons/searchIcon.svg';
 import { AppModal, AppButton } from '../common';
+import { ActiveFilterChips } from './ActiveFilterChips';
 
 const ALL_SPECIALIZATIONS = [
   'Anxiety & Stress',
@@ -29,14 +30,32 @@ interface FilterSortingModalProps {
   visible: boolean;
   onClose: () => void;
   onApplyFilters?: (filters: FilterCriteria | null) => void;
+  isWelzaa?: boolean;
+  initialFilters?: FilterCriteria | null;
 }
 
 export const FilterSortingModal: React.FC<FilterSortingModalProps> = ({
   visible,
   onClose,
   onApplyFilters,
+  isWelzaa = false,
+  initialFilters = null,
 }) => {
   const [activeTab, setActiveTab] = useState<FilterTab>('specialization');
+
+  const availableTabs = isWelzaa
+    ? [
+      { id: 'price' as FilterTab, label: 'Price' },
+      { id: 'rating' as FilterTab, label: 'Rating' },
+      { id: 'language' as FilterTab, label: 'Language' },
+    ]
+    : [
+      { id: 'specialization' as FilterTab, label: 'Specialization' },
+      { id: 'mode' as FilterTab, label: 'Consultation Mode' },
+      { id: 'price' as FilterTab, label: 'Price' },
+      { id: 'rating' as FilterTab, label: 'Rating' },
+      { id: 'language' as FilterTab, label: 'Language' },
+    ];
 
   const [selectedSpecializations, setSelectedSpecializations] = useState<string[]>([]);
   const [consultationMode, setConsultationMode] = useState<'Online' | 'Offline' | 'Both'>('Both');
@@ -46,6 +65,25 @@ export const FilterSortingModal: React.FC<FilterSortingModalProps> = ({
 
   const [specializationSearch, setSpecializationSearch] = useState<string>('');
   const [languageSearch, setLanguageSearch] = useState<string>('');
+
+  React.useEffect(() => {
+    if (visible) {
+      setSelectedSpecializations(initialFilters?.specializations || []);
+      setConsultationMode(initialFilters?.mode || 'Both');
+      setPriceValue(initialFilters?.priceMax ?? 5000);
+      setRatingValue(initialFilters?.ratingMin ?? 0);
+      setSelectedLanguages(initialFilters?.languages || []);
+    }
+  }, [visible, initialFilters]);
+
+  const currentModalFilters: FilterCriteria = {
+    specializations: selectedSpecializations,
+    mode: consultationMode,
+    priceMin: 0,
+    priceMax: priceValue,
+    ratingMin: ratingValue,
+    languages: selectedLanguages,
+  };
 
   const handleClearAll = () => {
     setSelectedSpecializations([]);
@@ -121,17 +159,27 @@ export const FilterSortingModal: React.FC<FilterSortingModalProps> = ({
         </View>
       }
     >
+      <ActiveFilterChips
+        filters={currentModalFilters}
+        onRemoveFilter={(updated) => {
+          setSelectedSpecializations(updated?.specializations || []);
+          setConsultationMode(updated?.mode || 'Both');
+          setPriceValue(updated?.priceMax ?? 5000);
+          setRatingValue(updated?.ratingMin ?? 0);
+          setSelectedLanguages(updated?.languages || []);
+        }}
+        onClearAll={() => {
+          setSelectedSpecializations([]);
+          setConsultationMode('Both');
+          setPriceValue(5000);
+          setRatingValue(0);
+          setSelectedLanguages([]);
+        }}
+        containerStyle={{ marginBottom: 6 }}
+      />
       <View style={styles.body}>
         <View style={styles.tabsCol}>
-          {(
-            [
-              { id: 'specialization', label: 'Specialization' },
-              { id: 'mode', label: 'Consultation Mode' },
-              { id: 'price', label: 'Price' },
-              { id: 'rating', label: 'Rating' },
-              { id: 'language', label: 'Language' },
-            ] as { id: FilterTab; label: string }[]
-          ).map((tab) => {
+          {availableTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <TouchableOpacity
@@ -344,19 +392,12 @@ export const FilterSortingModal: React.FC<FilterSortingModalProps> = ({
                         ]}
                       >
                         {isSelected && (
-                          <Svg
+                          <CheckIconSvg
                             width={12}
                             height={12}
-                            viewBox="0 0 20 20"
-                            fill="none"
-                          >
-                            <Path
-                              d="M4 10L8 14L16 6"
-                              stroke={theme.colors.purple}
-                              strokeWidth="3"
-                              strokeLinecap="round"
-                            />
-                          </Svg>
+                            stroke={theme.colors.purple}
+                            strokeWidth={3}
+                          />
                         )}
                       </View>
                       <Text style={styles.checkboxLabel}>{lang}</Text>

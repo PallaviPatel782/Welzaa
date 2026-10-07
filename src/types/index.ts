@@ -1,4 +1,5 @@
 export * from './expert';
+export * from './session';
 
 export interface User {
   id: string;

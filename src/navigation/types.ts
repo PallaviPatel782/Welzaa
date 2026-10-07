@@ -52,4 +52,84 @@ export type RootStackParamList = {
       bookingId?: string;
     };
   };
+  ReferAFriend: undefined;
+  PersonalInformation: {
+    isMinor?: boolean;
+  } | undefined;
+  MoodHistory: undefined;
+  JournalEntries: undefined;
+  NewJournalEntry: undefined;
+  JournalDetail: {
+    entry?: any;
+  } | undefined;
+  EditJournalEntry: {
+    entry?: any;
+  } | undefined;
+  WellnessArticleDetail: {
+    article?: any;
+  } | undefined;
+  SendFeedback: undefined;
+  Faq: undefined;
+  AboutUs: undefined;
+  PrivacyPolicy: undefined;
+  TermsConditions: undefined;
+  SessionDetails: {
+    session?: any;
+  } | undefined;
+  JoinSession: {
+    session?: any;
+    isMinor?: boolean;
+  } | undefined;
+  VideoCall: {
+    session?: any;
+    isMinor?: boolean;
+  } | undefined;
+  RescheduleSession: {
+    session?: any;
+    isEligible?: boolean;
+  } | undefined;
+  CancelSession: {
+    session?: any;
+    isEligible?: boolean;
+  } | undefined;
+  RefundPolicy: undefined;
+  SessionChat: {
+    session?: any;
+    doctorName?: string;
+  } | undefined;
+  BookSessionMarketplace: {
+    expert?: any;
+  } | undefined;
+  BookSessionWelzaaInstant: {
+    category?: any;
+    expert?: any;
+  } | undefined;
+  SelectTimeSlot: {
+    expert?: any;
+    sessionType?: 'instant' | 'schedule';
+    consultancyMode?: 'online' | 'offline';
+  } | undefined;
+  ApplyCoupon: {
+    expert?: any;
+    bookingData?: any;
+  } | undefined;
+  PaymentOptions: {
+    expert?: any;
+    bookingData?: any;
+  } | undefined;
+  SessionBooked: {
+    expert?: any;
+    bookingData?: any;
+    isQuestionnaireCompleted?: boolean;
+  } | undefined;
+  GetToKnowYou: {
+    expert?: any;
+    bookingData?: any;
+    initialAnswers?: any;
+  } | undefined;
+  FindingExpert: {
+    expert?: any;
+    bookingData?: any;
+  } | undefined;
 };
+
